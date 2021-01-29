@@ -145,49 +145,58 @@ def savePath():  # Create File Dialog to to select export folder
     saveEntry.insert(0, value)
 
 
+# This will correct the blury font issue in Windows 10 with Tkinter
+if os.name == "nt":
+    from ctypes import windll, pointer, wintypes
+    try:
+        windll.shcore.SetProcessDpiAwareness(1)
+    except Exception:
+        pass  # this will fail on Windows Server and maybe early Windows
+
 # Setup Gui with Tkinter
 window = tk.Tk()
+window.resizable(width=False, height=False)
 window.title("PDF Split")
 window.iconbitmap('bannana.ico')
 window.columnconfigure(2, weight=1, minsize=75)
 window.rowconfigure(5, weight=1, minsize=50)
 
 # PDF Selction
-pdfLabel = tk.Label(text='PDF File', anchor="e")
+pdfLabel = tk.Label(text='PDF File')
 pdfLabel.grid(row=0, column=0, padx=5, pady=5)
 pdfEntry = tk.Entry(width=25)
 pdfEntry.grid(row=0, column=1, padx=5, pady=5)
 pdfButton = tk.Button(text="Select PDF",
                       command=lambda: pdfPath())
-pdfButton.grid(row=0, column=2, padx=5, pady=5)
+pdfButton.grid(row=0, column=2, padx=5, pady=5, sticky='w')
 
 # Teacher List Path
-teacherLabel = tk.Label(text='Teacher List', anchor="e")
-teacherLabel.grid(row=1, column=0, padx=5, pady=5)
+teacherLabel = tk.Label(text='Teacher List')
+teacherLabel.grid(row=1, column=0, padx=5, pady=5, sticky='e')
 teacherEntry = tk.Entry(width=25)
 teacherEntry.grid(row=1, column=1, padx=5, pady=5)
 teacherButton = tk.Button(
     text="Select List", command=lambda: teacherPath())
-teacherButton.grid(row=1, column=2, padx=5, pady=5)
+teacherButton.grid(row=1, column=2, padx=5, pady=5, sticky='w')
 
 # Teacher List Path
-saveLabel = tk.Label(text='Export Location', anchor="e")
-saveLabel.grid(row=2, column=0, padx=5, pady=5)
+saveLabel = tk.Label(text='Export Location')
+saveLabel.grid(row=2, column=0, padx=5, pady=5, sticky='e')
 saveEntry = tk.Entry(width=25)
 saveEntry.grid(row=2, column=1, padx=5, pady=5)
 saveButton = tk.Button(text="Select Location",
                        command=lambda: savePath())
-saveButton.grid(row=2, column=2, padx=5, pady=5)
+saveButton.grid(row=2, column=2, padx=5, pady=5, sticky='e')
 
 # Append filename
-appendLabel = tk.Label(text="Append Text", anchor="e")
-appendLabel.grid(row=3, column=0,)
+appendLabel = tk.Label(text="Append Text")
+appendLabel.grid(row=3, column=0, sticky='e')
 appendEntry = tk.Entry(width=25)
 appendEntry.grid(row=3, column=1)
 
 # Status Label
 statusLabel = tk.Label(text='')
-statusLabel.grid(row=5, column=1, padx=5, pady=5)
+statusLabel.grid(row=5, column=1, padx=5, pady=5, sticky='e')
 
 # Split Button
 splitButton = tk.Button(text="Split Now", command=lambda: split(
