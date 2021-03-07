@@ -88,7 +88,11 @@ def split(pdf, teacherList, exportPath, appendText):
             output.addPage(inputpdf.getPage(page))
 
         # file_name = str(start+1)
-        doc_count = str(pdf_count)
+        if pdf_count < 10:
+            doc_count = '0'+str(pdf_count)
+        else:
+            doc_count = str(pdf_count)
+
         file_name = doc_count
 
         for dictpage in name_page[start+1]:

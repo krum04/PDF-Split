@@ -1,1 +1,12 @@
-# Place each name "Last, First" on a new line
+Aguayo, Monica
+King, Karla
+Drain, Stephanie
+Shelton, Christopher
+Hubert, Warren
+Ingram, Heather
+Rodriguez, Armando
+Ranieri, Maria
+Malone, Meghan
+Marazas, Elizabeth
+McBride, Bela
+
